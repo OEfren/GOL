@@ -160,6 +160,7 @@ int** evaluarMatriz(int** matriz, int numRows, int numCols)
 			}
 		}
 	}
+
 	return newMatriz;
 }
 
