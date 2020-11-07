@@ -86,32 +86,124 @@ void crearMatrizUno(int** matriz, int numRows, int numCols)
 {
 	// activamos las celulas
 	// x, y
-	matriz[3][3] = 1;
-	matriz[3][4] = 1;
-	matriz[3][5] = 1;
-	matriz[4][4] = 1;
+	matriz[5][5] = 1;
+	matriz[5][6] = 1;
+	matriz[5][7] = 1;
+	matriz[5][8] = 1;
+	matriz[5][9] = 1;
+	matriz[5][10] = 1;
+	matriz[5][11] = 1;
+	matriz[5][12] = 1;
+	matriz[5][13] = 1;
+	matriz[5][14] = 1;
+}
+
+int contarVecinos(int **matriz, int x, int y, int numRows, int numCols)
+{
+	int contador = 0;
+	// 12 hrs
+	if (x - 1 >= 0 && matriz[x - 1][y] == 1)
+		contador += 1;
+
+	// 1.30 hrs
+	if (x - 1 >= 0 && y + 1 < numCols && matriz[x - 1][y + 1] == 1)
+		contador += 1;
+
+	// 3 hrs
+	if (y + 1 < numCols && matriz[x][y + 1] == 1)
+		contador += 1;
+
+	// 4.5 hrs
+	if (x + 1 < numRows && y + 1 < numCols && matriz[x + 1][y + 1] == 1)
+		contador += 1;
+
+	// 6 hrs
+	if (x + 1 < numRows && matriz[x + 1][y] == 1)
+		contador += 1;
+
+	// 7.30 hrs
+	if (x + 1 < numRows && y - 1 >= 0 && matriz[x + 1][y - 1] == 1)
+		contador += 1;
+
+	// 9 hrs
+	if (y - 1 >= 0 && matriz[x][y - 1] == 1)
+		contador += 1;
+
+	// 9.30 hrs
+	if (x - 1 >= 0 && y - 1 >= 0 && matriz[x - 1][y - 1] == 1)
+		contador += 1;
+
+	return contador;
 }
 
 int** evaluarMatriz(int** matriz, int numRows, int numCols)
 {
-
 	int **newMatriz = generaMatriz(numRows, numCols);
 	limpiarMatriz(newMatriz, numRows, numCols);
 
-
-	/*
 	for (int row = 0; row < numRows; row++)
 	{
 		for (int col = 0; col < numCols; col++)
 		{
-			cout << matriz[row][col] << " ";
-		}
-		cout << endl;
-	}
-	*/
+			int vecinos = contarVecinos(matriz, row, col, numRows, numCols);
 
-	return matriz;
+			if (matriz[row][col] == 0 && vecinos == 3) {
+				newMatriz[row][col] = 1;
+			}
+			else if (vecinos == 2 || vecinos == 3 )
+			{
+				newMatriz[row][col] = 1;
+			}
+			else if (vecinos > 3)
+			{
+				newMatriz[row][col] = 0;
+			}
+			
+		}
+	}
+	return newMatriz;
 }
+
+
+
+/*
+void colocarHoras(int **matriz,  int x, int y, int numRows, int numCols) 
+{
+	int contador = 0;
+	// 12 hrs
+	if (x - 1 >= 0 )
+		matriz[x - 1][y] = 1;
+
+	// 1.30 hrs
+	if (x - 1 >= 0 && y + 1 < numCols)
+		matriz[x - 1][y + 1] = 1;
+
+	// 3 hrs
+	if (y + 1 < numCols)
+		matriz[x][y + 1] = 1;
+
+	// 4.5 hrs
+	if (x + 1 < numRows && y + 1 < numCols)
+		matriz[x + 1][y + 1] = 1;
+
+	// 6 hrs
+	if (x + 1 < numRows)
+		matriz[x + 1][y] = 1;
+
+	// 7.30 hrs
+	if (x + 1 < numRows && y - 1 >= 0)
+		matriz[x + 1][y - 1] = 1;
+
+	// 9 hrs
+	if (y - 1 >= 0)
+		matriz[x][y - 1] = 1;
+
+	// 9.30 hrs
+	if (x - 1 >= 0 && y - 1 >= 0)
+		matriz[x - 1][y - 1] = 1;
+}
+*/
+
 
 int main() 
 {
@@ -136,5 +228,7 @@ int main()
 
 		cout << "Imprmir siguiente matriz (1) Si (0) No: " << endl;
 		cin >> salir;
-	}	
+	}
+
+	return 0;
 }
