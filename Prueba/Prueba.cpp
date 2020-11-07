@@ -1,5 +1,5 @@
 // Prueba.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
+// https://bitstorm.org/gameoflife/
 /*
 #include <iostream>
 
@@ -25,48 +25,6 @@ int main()
 
 using namespace std;
 
-void GeneradorMatriz1(int numRows, int numColumns)
-{
-	int *rows = new int[numRows];
-	
-	for (int index = 0; index < sizeof(rows); index++)
-	{
-		//rows[index] = new int[numColumns];
-		cout << "Salida de texto " << numRows  ;
-	}
-	
-
-	cout << "The size of the array is: " << sizeof(rows);
-}
-
-void printMatriz(int** rows) {
-	/*
-	for (int index = 0; index < rows.count; index++) 
-	{
-
-	}
-	*/
-}
-
-/*
-int main()
-{
-	//srand(time(NULL));
-	int filas_columnas = 0;
-	cout << "Ingrese numero de filas y columnas deseadas: ";
-	cin >> filas_columnas;
-	GeneradorMatriz1(filas_columnas, filas_columnas);
-	
-
-	int salir = 0;
-	do  {
-		cout << "¿Desea salir del progra? 1 = Si, 0 = No: ";
-		cin >> salir;
-
-	} while (salir == 0);	
-}
-*/
-
 int** generaMatriz(int numRows, int numCols) 
 {
 	int **matriz = new int*[numRows];
@@ -74,19 +32,27 @@ int** generaMatriz(int numRows, int numCols)
 	{
 		matriz[index] = new int[numCols];
 	}
+
 	return matriz;
 }
 
-void mostrarMatriz(int** matriz, int rows, int columns) 
+void mostrarMatriz(int** matriz, int numRows, int numCols)
 {
-	for (int i = 0; i < rows; i++) 
+	for (int i = 0; i < numRows; i++) 
 	{
-		for (int j = 0; j < columns; j++)
+		for (int j = 0; j < numCols; j++)
 		{
 			cout << matriz[i][j] << " ";
 		}	
 		cout << endl;
 	}
+}
+
+void limpiarMatriz(int** matriz, int numRows, int numCols)
+{
+	for (int index = 0; index < numRows; index++)
+		for (int j = 0; j < numCols; j++)
+			matriz[index][j] = 0;
 }
 
 int pruebaUno() {
@@ -116,18 +82,59 @@ int pruebaUno() {
 	return 0;
 }
 
+void crearMatrizUno(int** matriz, int numRows, int numCols)
+{
+	// activamos las celulas
+	// x, y
+	matriz[3][3] = 1;
+	matriz[3][4] = 1;
+	matriz[3][5] = 1;
+	matriz[4][4] = 1;
+}
+
+int** evaluarMatriz(int** matriz, int numRows, int numCols)
+{
+
+	int **newMatriz = generaMatriz(numRows, numCols);
+	limpiarMatriz(newMatriz, numRows, numCols);
+
+
+	/*
+	for (int row = 0; row < numRows; row++)
+	{
+		for (int col = 0; col < numCols; col++)
+		{
+			cout << matriz[row][col] << " ";
+		}
+		cout << endl;
+	}
+	*/
+
+	return matriz;
+}
+
 int main() 
 {
 	int filasColumnas = 0;
 	cout << "Ingrese numero de filas y columnas deseadas:" << endl;
 	cin >> filasColumnas;
 	
+	int **matriz = generaMatriz(filasColumnas, filasColumnas);
+	limpiarMatriz(matriz, filasColumnas, filasColumnas);
+	crearMatrizUno(matriz, filasColumnas, filasColumnas);
+	mostrarMatriz(matriz, filasColumnas, filasColumnas);
+
 	int salir = 0;
-	do 
+	cout << "Imprmir siguiente matriz (1) Si (0) No: " << endl;
+	cin >> salir;
+
+	while (salir == 1)
 	{
 
+		matriz = evaluarMatriz(matriz, filasColumnas, filasColumnas);
+		mostrarMatriz(matriz, filasColumnas, filasColumnas);
 
-		cout << "Salir del programa (1) Si (0) No: " << endl;
+		cout << "Imprmir siguiente matriz (1) Si (0) No: " << endl;
 		cin >> salir;
-	} while (salir == 0);	
+	}	
 }
