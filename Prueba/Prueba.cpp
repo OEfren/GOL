@@ -116,9 +116,18 @@ int pruebaUno() {
 	return 0;
 }
 
-int main() {
+int main() 
+{
+	int filasColumnas = 0;
+	cout << "Ingrese numero de filas y columnas deseadas:" << endl;
+	cin >> filasColumnas;
 	
-	// Prueba de una matriz dinamica asignando los valores
-	// return pruebaUno();
-	
+	int salir = 0;
+	do 
+	{
+
+
+		cout << "Salir del programa (1) Si (0) No: " << endl;
+		cin >> salir;
+	} while (salir == 0);	
 }
