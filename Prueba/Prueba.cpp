@@ -1,14 +1,3 @@
-// Prueba.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-// https://bitstorm.org/gameoflife/
-/*
-#include <iostream>
-
-int main()
-{
-    std::cout << "Hello World!\n";
-}
-*/
-
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
 // Depurar programa: F5 o menú Depurar > Iniciar depuración
 
@@ -53,33 +42,6 @@ void limpiarMatriz(int** matriz, int numRows, int numCols)
 	for (int index = 0; index < numRows; index++)
 		for (int j = 0; j < numCols; j++)
 			matriz[index][j] = 0;
-}
-
-int pruebaUno() {
-	int i, j, f, c;
-	cout << "Introduce el numero de filas" << endl;
-	cin >> f;
-	cout << "Introduce el numero de columnas" << endl;
-	cin >> c;
-
-	// creamos la matriz !
-	int **M = generaMatriz(f, c);
-
-	// Comprobamos
-	if (!M) {
-		cout << "No se puede reservar el espacio" << endl;
-		return 1;
-	}
-
-	cout << "Introduzca la matriz" << endl;
-	for (i = 0; i < f; i++)
-		for (j = 0; j < c; j++)
-			cin >> M[i][j];
-
-	cout << "Mostrar la matriz" << endl;
-	mostrarMatriz(M, i, c);
-	delete[] M;
-	return 0;
 }
 
 void crearMatrizUno(int** matriz, int numRows, int numCols)
